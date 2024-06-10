@@ -1,0 +1,343 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %}My Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Minimalistic custom styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+      scroll-behavior: smooth; /* Enable smooth scrolling */
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      color: #222;
+    }
+
+    a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #666;
+    }
+
+    nav a {
+      color: #fff;
+    }
+
+    nav a:hover {
+      color: #ddd;
+    }
+
+    section {
+      padding: 40px 0;
+    }
+
+    .bg-teal-800 {
+      background-color: #15796b;
+    }
+
+    .text-white {
+      color: #fff;
+    }
+
+    .text-gray-300 {
+      color: #ccc;
+    }
+
+    /* Animated gradient background */
+    .animated-gradient {
+      background: -moz-linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 100%, 97%, 1) 100%);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  </style>
+</head>
+
+<body class="animated-gradient">
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="alert {{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-4 bg-teal-800" style="background: -moz-linear-gradient(90deg, hsla(207, 80%, 59%, 1) 0%, hsla(344, 64%, 79%, 1) 50%, hsla(343, 93%, 69%, 1) 100%);">
+    <div class="flex items-center">
+      <a href="/" class="text-3xl text-white mr-4">
+        <img src="/static/images/mypic.png" alt="Your Logo" class="h-10">
+      </a>
+      <nav class="hidden md:flex space-x-4">
+        <a href="#about" class="text-lg text-gray-200 hover:text-white transition-colors duration-300">About</a>
+        <a href="#projects" class="text-lg text-gray-200 hover:text-white transition-colors duration-300">Projects</a>
+        <a href="#skills" class="text-lg text-gray-200 hover:text-white transition-colors duration-300">Skills</a>
+        <a href="#contact" class="text-lg text-gray-200 hover:text-white transition-colors duration-300">Contact</a>
+      </nav>
+    </div>
+    <div class="flex items-center">
+      <a href="#contact" class="text-lg text-white bg-teal-600 hover:bg-teal-700 border border-teal-400 px-6 py-3 rounded-md transition-colors duration-300 mr-4">Hire Me</a>
+      <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+        <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M3 6h18v2H3V6zm0 6h18v2H3v-2zm0 6h18v2H3v-2z" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+
+  <main class="container mx-auto px-4 py-16">
+    {% block content %}
+
+    <section id="about" class="container mx-auto py-16 flex flex-col md:flex-row items-center pt-40">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+            <h2 class="text-3xl font-bold leading-tight">About Me</h2>
+            <p class="text-lg text-gray-600 mt-2">Aspiring Software Engineer | ALX Program</p>
+            <div class="mt-4">
+                <p class="text-gray-600">
+                    Hi, I'm Osinn, a passionate software engineer on a journey to create innovative and impactful software solutions.
+                    I'm currently honing my skills in the ALX program, where I'm diving deep into various programming languages,
+                    software development methodologies, and industry-standard tools.
+                </p>
+                <p class="text-gray-600 mt-2">
+                    I thrive on challenges and enjoy collaborating with others to bring ideas to life. I'm particularly interested in web development,
+                    cloud technologies, and machine learning. My goal is to build applications that not only solve real-world problems but also
+                    provide seamless and enjoyable user experiences.
+                </p>
+            </div>
+        </div>
+
+        <div class="md:w-1/2 flex justify-center items-center">
+            <img src="{% static 'images/mypic.png' %}" alt="Osinn World" class="rounded-full w-48 h-48 object-cover border border-gray-300 shadow-sm">
+        </div>
+    </section>
+
+
+
+      <section id="skills" class="mb-8 pt-40">
+        <h2 class="text-3xl font-bold mb-4">Skills & Expertise</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div class="skill-card p-4 bg-white rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-gray-200 transition-colors duration-300">
+            <div class="skill-icon mb-4">
+              <i class="fas fa-laptop-code text-4xl text-teal-600"></i>
+            </div>
+            <span class="text-lg font-semibold text-teal-800 mb-2">Web Development</span>
+            <p class="text-gray-600 text-sm text-center">Experienced in building modern and responsive websites using cutting-edge technologies.</p>
+          </div>
+          <div class="skill-card p-4 bg-white rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-gray-200 transition-colors duration-300">
+            <div class="skill-icon mb-4">
+              <i class="fas fa-paint-brush text-4xl text-teal-600"></i>
+            </div>
+            <span class="text-lg font-semibold text-teal-800 mb-2">Graphic Design</span>
+            <p class="text-gray-600 text-sm text-center">Creating visually appealing graphics, branding, and user interfaces with a keen eye for design.</p>
+          </div>
+          <div class="skill-card p-4 bg-white rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-gray-200 transition-colors duration-300">
+            <div class="skill-icon mb-4">
+              <i class="fas fa-mobile-alt text-4xl text-teal-600"></i>
+            </div>
+            <span class="text-lg font-semibold text-teal-800 mb-2">UI/UX Design</span>
+            <p class="text-gray-600 text-sm text-center">Focusing on user experience and crafting intuitive interfaces that provide seamless interactions.</p>
+          </div>
+          <div class="skill-card p-4 bg-white rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-gray-200 transition-colors duration-300">
+            <div class="skill-icon mb-4">
+              <i class="fas fa-project-diagram text-4xl text-teal-600"></i>
+            </div>
+            <span class="text-lg font-semibold text-teal-800 mb-2">Project Management</span>
+            <p class="text-gray-600 text-sm text-center">Skilled in managing projects from ideation to delivery, ensuring seamless collaboration and timely execution.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="mb-8 pt-40">
+        <h2 class="text-3xl font-bold mb-4">Featured Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="project1.jpg" alt="Project 1" class="w-full h-48 object-cover">
+            <div class="p-4">
+              <h3 class="text-xl font-semibold mb-2">Project 1 Title</h3>
+              <p class="text-gray-700 mb-4">Brief description of Project 1 goes here.</p>
+              <div class="flex flex-wrap">
+                <span class="bg-gray-200 text-gray-700 rounded-full px-3 py-1 mr-2 mb-2">HTML</span>
+                <span class="bg-gray-200 text-gray-700 rounded-full px-3 py-1 mr-2 mb-2">CSS</span>
+                <span class="bg-gray-200 text-gray-700 rounded-full px-3 py-1 mr-2 mb-2">JavaScript</span>
+              </div>
+              <a href="#" class="inline-block mt-4 bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition-colors duration-300">View Project</a>
+            </div>
+          </div>
+          <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="project2.jpg" alt="Project 2" class="w-full h-48 object-cover">
+            <div class="p-4">
+              <h3 class="text-xl font-semibold mb-2">Project 2 Title</h3>
+              <p class="text-gray-700 mb-4">Brief description of Project 2 goes here.</p>
+              <div class="flex flex-wrap">
+                <span class="bg-gray-200 text-gray-700 rounded-full px-3 py-1 mr-2 mb-2">Python</span>
+                <span class="bg-gray-200 text-gray-700 rounded-full px-3 py-1 mr-2 mb-2">Django</span>
+                <span class="bg-gray-200 text-gray-700 rounded-full px-3 py-1 mr-2 mb-2">SQLite</span>
+              </div>
+              <a href="#" class="inline-block mt-4 bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition-colors duration-300">View Project</a>
+            </div>
+          </div>
+          <!-- Add more project cards here -->
+        </div>
+      </section>
+
+
+      <section id="contact" class="mb-8 pt-40">
+          <h2 class="text-3xl font-bold mb-4">Get in Touch</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                  <h3 class="text-xl font-bold mb-2">Contact Form</h3>
+                  <form class="space-y-4" method="post" action="{% url 'contact' %}">
+                    {% csrf_token %}
+                    <div>
+                      <label for="name" class="block text-gray-700 font-semibold">Name</label>
+                      <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600" required>
+                    </div>
+                    <div>
+                      <label for="email" class="block text-gray-700 font-semibold">Email</label>
+                      <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600" required>
+                    </div>
+                    <div>
+                      <label for="number" class="block text-gray-700 font-semibold">Number</label>
+                      <input type="text" id="number" name="number" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600" required>
+                    </div>
+                    <div>
+                      <label for="message" class="block text-gray-700 font-semibold">Message</label>
+                      <textarea id="message" name="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600" required></textarea>
+                    </div>
+                    <div>
+                      <button type="submit" class="px-4 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition-colors duration-300">Send Message</button>
+                    </div>
+                  </form>
+              </div>
+              <div>
+                  <h3 class="text-xl font-bold mb-2">Contact Details</h3>
+                  <div class="mb-4">
+                      <i class="fas fa-map-marker-alt text-teal-600 mr-2"></i>
+                      <span class="text-gray-700">123 Main Street, City, State, Country</span>
+                  </div>
+                  <div class="mb-4">
+                      <i class="fas fa-envelope text-teal-600 mr-2"></i>
+                      <a href="mailto:your-email@example.com" class="text-teal-600 hover:text-teal-700 transition-colors duration-300">your-email@example.com</a>
+                  </div>
+                  <div class="mb-4">
+                      <i class="fas fa-phone text-teal-600 mr-2"></i>
+                      <span class="text-gray-700">+1 (123) 456-7890</span>
+                  </div>
+                  <div>
+                      <h3 class="text-xl font-bold mb-2">Connect with Me</h3>
+                      <div class="flex space-x-4">
+                          <a href="#" class="text-teal-600 hover:text-teal-700 transition-colors duration-300" aria-label="Twitter">
+                              <i class="fab fa-twitter"></i>
+                          </a>
+                          <a href="#" class="text-teal-600 hover:text-teal-700 transition-colors duration-300" aria-label="Facebook">
+                              <i class="fab fa-facebook"></i>
+                          </a>
+                          <a href="#" class="text-teal-600 hover:text-teal-700 transition-colors duration-300" aria-label="Instagram">
+                              <i class="fab fa-instagram"></i>
+                          </a>
+                          <a href="#" class="text-teal-600 hover:text-teal-700 transition-colors duration-300" aria-label="LinkedIn">
+                              <i class="fab fa-linkedin"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <section id="hire-me" class="mb-8 pt-40">
+        <h2 class="text-3xl font-bold mb-4">Hire Me</h2>
+        <div class="bg-teal-100 p-6 rounded-lg">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <div>
+              <h3 class="text-2xl font-bold mb-2">Let's Work Together</h3>
+              <p class="text-gray-700 mb-4">I'm available for freelance work or full-time opportunities in the field of software engineering. If you're looking for a passionate and skilled professional to join your team or work on your project, I'd love to hear from you.</p>
+              <a href="#contact" class="inline-block bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition-colors duration-300">Contact Me</a>
+            </div>
+            <div class="mt-6 md:mt-0">
+              <img src="{% static 'images/pro.png' %}" alt="Coding Illustration" class="w-64 h-36">
+            </div>
+          </div>
+        </div>
+      </section>
+
+    {% endblock %}
+
+  </main>
+
+  <footer class="bg-teal-800 text-white py-8 mt-8">
+      <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                  <h3 class="text-xl text-white font-bold mb-4">About Me</h3>
+                  <p class="text-gray-300 mb-4">
+                      Passionate software engineer dedicated to crafting innovative and user-friendly solutions. Eager to learn and collaborate on exciting projects.
+                  </p>
+                  <a href="#about" class="text-teal-300 hover:text-teal-200 transition-colors duration-300">Learn More</a>
+              </div>
+              <div>
+                  <h3 class="text-xl text-white font-bold mb-4">Quick Links</h3>
+                  <nav>
+                      <ul class="text-gray-300">
+                          <li><a href="#about" class="hover:text-white transition-colors duration-300">About</a></li>
+                          <li><a href="#projects" class="hover:text-white transition-colors duration-300">Projects</a></li>
+                          <li><a href="#skills" class="hover:text-white transition-colors duration-300">Skills</a></li>
+                          <li><a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a></li>
+                      </ul>
+                  </nav>
+              </div>
+              <div>
+                  <h3 class="text-xl text-white font-bold mb-4">Get in Touch</h3>
+                  <p class="text-gray-300 mb-4">
+                      Feel free to reach out for collaborations or just to say hello!
+                  </p>
+                  <a href="#contact" class="text-teal-300 hover:text-teal-200 transition-colors duration-300">Contact Me</a>
+              </div>
+          </div>
+          <div class="flex flex-col md:flex-row justify-between items-center mt-8">
+              <div class="text-gray-300 mb-4 md:mb-0">
+                  &copy; 2023 Osinn World - All rights reserved.
+              </div>
+              <div class="flex space-x-4">
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300" aria-label="Twitter">
+                      <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300" aria-label="LinkedIn">
+                      <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300" aria-label="Github">
+                      <i class="fab fa-github"></i>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </footer>
+
+  {% block scripts %}
+
+  {% endblock %}
+</body>
+</html>
